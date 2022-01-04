@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(scicomp VERSION 1.0)
 
 # Add the executable
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/utils/cli.cpp)
 
 # Find Python
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)

@@ -5,10 +5,10 @@
 
 void Cli::print_info()
 {
-    std::cout << "######################## \n";
-    std::cout << "#  Welcome to SciComp! # \n";
-    std::cout << "#     Version v0.1     # \n";
-    std::cout << "######################## \n";
+    std::cout << "######################### \n";
+    std::cout << "#  Welcome to SciComp!  # \n";
+    std::cout << "#     Version v0.1      # \n";
+    std::cout << "######################### \n";
 }
 
 void Cli::print_help(char** argv)
@@ -26,10 +26,10 @@ void Cli::print_help(char** argv)
     }
 
     if (help == "--help") {
-        std::cout << "######################## \n";
-        std::cout << "#  Welcome to SciComp! # \n";
-        std::cout << "#     Version v0.1     # \n";
-        std::cout << "######################## \n";
+        std::cout << "######################### \n";
+        std::cout << "#  Welcome to SciComp!  # \n";
+        std::cout << "#     Version v0.1      # \n";
+        std::cout << "######################### \n";
         std::cout << "\n* Use lt to calculate the solution of the ";
         std::cout << "Lotka-Volterra model and specify all the required parameters. \n";
         std::cout << "\n* Use fem to calculate a the solutions of a simple problem ";
