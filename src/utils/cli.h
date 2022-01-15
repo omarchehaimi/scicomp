@@ -3,17 +3,32 @@
 
 #include <string>
 
+/**
+ * @class Cli
+ * @brief Class for a minimal cli.
+ */
+
 class Cli
 {
     private:
+        /** Input parameters */
         int argc;
 	    char** argv;
+
     public:
+        /** Helper functions */
         void print_info(); 
 	    void print_help(char** argv);
+
+        /** Read the parameters from the user and check them */
         void read_params(char** argv);
         std::string check_param(char** p, int el, std::string name_p);
-        void call_lv(int n, float x_0, float y_0, float a, float b, float c, float d);
+
+        /** Call of the Lotka-Volterra model */
+        void call_lv(int n, double dt, double x_0, double y_0, double a, 
+                     double b, double c, double d);
+
+        /** Call of the finite element method model */
         void call_fem();
 };
 

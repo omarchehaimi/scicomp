@@ -1,7 +1,8 @@
+#include "cli.h"
+#include "../lv/lv.h"
 #include <iostream>
 #include <string>
 #include <stdexcept>
-#include "cli.h"
 
 void Cli::print_info()
 {
@@ -70,20 +71,22 @@ void Cli::read_params(char** argv)
 
    if (model == "lv") {
        std::string ns = Cli::check_param(argv, 2, "n");
-       std::string x_0s = Cli::check_param(argv, 3, "x_0");
-       std::string y_0s = Cli::check_param(argv, 4, "y_0");
-       std::string as = Cli::check_param(argv, 5, "a");
-       std::string bs = Cli::check_param(argv, 6, "b");
-       std::string cs = Cli::check_param(argv, 7, "c");
-       std::string ds = Cli::check_param(argv, 8, "d");
+       std::string dts = Cli::check_param(argv, 3, "dt");
+       std::string x_0s = Cli::check_param(argv, 4, "x_0");
+       std::string y_0s = Cli::check_param(argv, 5, "y_0");
+       std::string as = Cli::check_param(argv, 6, "a");
+       std::string bs = Cli::check_param(argv, 7, "b");
+       std::string cs = Cli::check_param(argv, 8, "c");
+       std::string ds = Cli::check_param(argv, 9, "d");
        int n = std::stoi(ns);
-       float x_0 = std::stof(x_0s);
-       float y_0 = std::stof(y_0s);
-       float a = std::stof(as);
-       float b = std::stof(bs);
-       float c = std::stof(cs);
-       float d = std::stof(ds);
-       Cli::call_lv(n, x_0, y_0, a, b, c, d);
+       double dt = std::stod(dts);
+       double x_0 = std::stod(x_0s);
+       double y_0 = std::stod(y_0s);
+       double a = std::stod(as);
+       double b = std::stod(bs);
+       double c = std::stod(cs);
+       double d = std::stod(ds);
+       Cli::call_lv(n, dt, x_0, y_0, a, b, c, d);
 
    } else if (model=="fem") {
        Cli::call_fem();
@@ -93,12 +96,14 @@ void Cli::read_params(char** argv)
    }
 }
 
-void Cli::call_lv(int n, float x_0, float y_0, float a, float b, float c, float d)
+void Cli::call_lv(int n, double dt, double x_0, double y_0, double a, double b, 
+                  double c, double d)
 {
     /**
     * Calls the Lotka-Volterra solver.
     * The parameters are:
-    *     - t: number of steps to solve the system
+    *     - n: number of steps to solve the system
+    *     - dt: time step
     *     - x_0: initial value of pray
     *     - y_0: initial value of predator
     *     - a: grow parameter of the pray
@@ -107,15 +112,22 @@ void Cli::call_lv(int n, float x_0, float y_0, float a, float b, float c, float 
     *     - d: death parameter of the predator
     */ 
     std::cout << "\n****************************************************************\n";
-    std::cout << "Solving the Lotka-Volterra model with the following "; 
+    std::cout << "Solving the Lotka-Volterra equations with the following "; 
     std::cout << "parameters: \n";
     std::cout << "    * n=" << n << "\n";
+    std::cout << "    * dt=" << dt << "\n";
     std::cout << "    * x_0=" << x_0 << "\n";
     std::cout << "    * y_0=" << y_0 << "\n";
     std::cout << "    * a=" << a << "\n";
     std::cout << "    * b=" << b << "\n";
     std::cout << "    * c=" << c << "\n";
     std::cout << "    * d=" << d << "\n";
+    std::cout << "The total time for the calculation is n*dt= " << n*dt-dt << "\n";
+    
+    // Calling the solver
+    LV lv_solver;
+    lv_solver.solve_lv(n, dt, x_0, y_0, a, b, c, d);
+
 }
 
 void Cli::call_fem()
