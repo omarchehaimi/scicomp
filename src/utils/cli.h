@@ -29,7 +29,7 @@ class Cli
                      double b, double c, double d);
 
         /** Call of the finite element method model */
-        void call_fem();
+        void call_nv();
 };
 
 #endif

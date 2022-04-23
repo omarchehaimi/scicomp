@@ -1,7 +1,6 @@
 #ifndef PLOTTING_H
 #define PLOTTING_H
 
-#include "../../include/matplotlibcpp.h"
 #include <vector>
 #include <string>
 
@@ -13,10 +12,6 @@
 class Plotting 
 {
     private:
-        /** Width and height of the figure for the plot */
-        int w;
-        int h;
-
         /** Check if the folder exists and if not create it */
         void check_folder(std::string& path);
     

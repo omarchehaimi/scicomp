@@ -1,15 +1,12 @@
 #include "plotting.h"
+#include <matplot/matplot.h>
 #include <vector>
 #include <string>
 #include <filesystem>
+#include <fstream>
+#include <iostream>
 
-namespace plt = matplotlibcpp;
-
-// Plotting::Plotting(int w, int h)
-// {
-//     this->w = w;
-//     this->h = h;
-// }
+using namespace matplot;
 
 void Plotting::check_folder(std::string& path)
 {
@@ -22,7 +19,7 @@ void Plotting::check_folder(std::string& path)
 
 void Plotting::plot_lv(std::vector<double>& t, std::vector<double>& x, 
                        std::vector<double>& y, std::string x_leg, 
-                       std::string y_leg, std::string title, 
+                       std::string y_leg, std::string tlt, 
                        std::string fn, std::string path /* The default is "" */)
 {   
     std::string cur_dir;
@@ -34,15 +31,26 @@ void Plotting::plot_lv(std::vector<double>& t, std::vector<double>& x,
     }
     Plotting::check_folder(cur_dir);
 
-    plt::figure();
-    plt::plot(t, x, {{"label", "Predator"}});
-    plt::plot(t, y, {{"label", "Prey"}});
-    plt::xlabel(x_leg);
-    plt::ylabel(y_leg);
-    plt::title(title);
-    plt::legend();
+    auto h = figure(true);
+    h->position({0, 0, 600, 600});
+    h->size(1000, 800);
+    h->font_size(12);
+    h->title(tlt);
 
-    plt::save(cur_dir+"/"+fn);
+    auto p1 = plot(t, x);
+    p1->display_name("Prey");
+    hold(on);
+    auto p2 = plot(t, y);
+    p2->display_name("Predator");
+    hold(off);
 
-    plt::show();
+    legend();
+
+    xlabel(x_leg);
+    ylabel(y_leg);
+
+    std::string file_name = cur_dir + "/" + fn + ".pdf";
+    save(file_name, "pdf");
+
+    show();
 }

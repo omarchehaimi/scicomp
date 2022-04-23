@@ -3,45 +3,48 @@
 In this personal project I implement in C++ the numerical solution of some famous mathematical models.
 
 The models implemented are:
+
 - The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model
-- [Finite Element Method](https://en.wikipedia.org/wiki/Finite_element_method) in one dimension 
+- The [Navier-Stokes]([Navier–Stokes equations - Wikipedia](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations)) equations solved with the [Finite Difference  Method]([Finite difference method - Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_method))
 
 ## Compilation
+
 To compile `scicomp` the C++ version must be greater than 17.
-CMake is used to create the makefile. The only dependency is to have an installation of Python on the local machine.
+CMake is used to create the makefile. The only dependency is the [Matplot++](https://alandefreitas.github.io/matplotplusplus/) library downloaded automatically while generating the makefile.
 
 Create a folder named `build`, and then generate the makefile with CMake:
 
-`cmake -S source/ -B build/ -D PYTHON_INCLUDE=../include/pythonXY -D PYTHON_VERSION=pythonXY`
+`cmake -S source/ -B build/`
 
-The flags `PYTHON_INCLUDE` and `PYTHON_VERSION` are required to include the [matplotlib](https://matplotlib-cpp.readthedocs.io/en/latest/) porting in C++.
-
-Then compile with inside the `build` folder with:
+Compile hence inside the `build` folder with:
 
 `cd build`
 
 `make`
 
 ## Usage
+
 The folder containing the plots with the results are saved one level up with respect the main folder of the project `scicomp`. The folder structure should be: `build`, `scicomp`, and `plots`. The `plots` folder is created the first time an operation which requires to plot a graph is called. The location of `plots` is one upper level with respect the folder where there is the executable, which by default is `build`.
 
 ### Lotka-Volterra Model
+
 The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model describes how the population of two species change when they interact. This model is also known as predator-prey model. 
 
-The Lotka-Volterra model is described by the following pair of equations:
+The Lotka-Volterra model is described by the following pair of ordinary differential equations:
 
 $\frac{dx}{dt}$ = $ax - bxy$
 
 $\frac{dy}{dt}$ = $cxy - dy$,
 
-
 where we have:
+
 - $a$: grow of the preys
 - $b$: interaction term between prey and predator
 - $c$: grow of the predators
 - $d$: death rate of the predators
 
-We then have that the required parameters to solve these equations are:
+Hence the required parameters to solve these equations are:
+
 - n: number of step
 - dt: time step
 - x_0: initial number of prey
@@ -51,4 +54,30 @@ We then have that the required parameters to solve these equations are:
 - c: grow of the predator
 - d: death rate of the predator
 
+This system of ordinary differential equation is numerically solved by using the 
+classical Runge-Kutta method (RK4).
+
 Example: `./scicomp lv n=10000 dt=0.01 x_0=2 y_0=1 a=0.7 b=0.5 c=0.3 d=0.2`.
+
+### 2D Navier-Stokes Equation
+
+The [Navier-Stokes](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) equations are partial
+differential equations that describe the motion of viscous fluids. In this case we will focus on incompressible fluids and for the  two dimensional case. The equations are:
+
+$\frac{\partial \vec{u}}{\partial t} + \vec{u} \cdot \nabla \vec{u} = -\frac{1}{\rho}\nabla p + \nu \nabla^2 \vec{u}$
+
+$\nabla \cdot \vec{u} = 0$
+
+Where:
+
+- $\vec{u}$ is the velocity vector
+- $t$ is time
+- $\rho$ is density
+- $p$ is pressure
+- $\nu$ is the kinematic viscosity
+
+The first equation is the conservation of the momentum and the second one about the continuity equation.
+
+These equations are solved numerically for the cavity flow problem by following the guide: [CFD Python: 12 steps to Navier-Stokes](https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/).
+
+Example: `./scicomp nv cavity2d`.

@@ -89,7 +89,7 @@ void Cli::read_params(char** argv)
        Cli::call_lv(n, dt, x_0, y_0, a, b, c, d);
 
    } else if (model=="fem") {
-       Cli::call_fem();
+       Cli::call_nv();
 
    } else {
        std::cout << model << " is not an available option. Choose beteween lv or fem \n";
@@ -130,7 +130,7 @@ void Cli::call_lv(int n, double dt, double x_0, double y_0, double a, double b,
 
 }
 
-void Cli::call_fem()
+void Cli::call_nv()
 {
     std::cout << "\n********************************************************\n";
     std::cout << "Message inside fem just to print something for testing. \n";

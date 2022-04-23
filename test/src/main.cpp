@@ -1,11 +1,11 @@
-#include "../../include/matplotlibcpp.h"
+#include <matplot/matplot.h>
 
-namespace plt = matplotlibcpp;
+using namespace matplot;
 
 int main() {
 
-    std::cout << "Testing matplotlib library. \n"; 
-    plt::plot({1,3,2,4});
-    std::cout << "matplotlib tested successfully! \n";
-    plt::show();
+    std::cout << "Testing Matplot++ library. \n"; 
+    plot({1.0, 0.7, 0.4, 0.0, -0.4, -0.7, -1}, "k");
+    std::cout << "Matplot++ tested successfully! \n";
+    show();
 }
