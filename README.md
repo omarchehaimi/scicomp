@@ -80,4 +80,4 @@ The first equation is the conservation of the momentum and the second one about 
 
 These equations are solved numerically for the cavity flow problem by following the guide: [CFD Python: 12 steps to Navier-Stokes](https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/).
 
-Example: `./scicomp nv cavity2d`.
+Example: `./scicomp ns cavity2d`.
