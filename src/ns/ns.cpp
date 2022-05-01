@@ -21,6 +21,46 @@ void NS::check_size(int nx, int ny) {
         throw std::invalid_argument("nx and ny have different value! Plsease set the same value.");
 }
 
+void NS::save_res(Matrix<double>& u, Matrix<double>& v, Matrix<double>& p, 
+                  int nx, int ny) {
+    // OUTPUT DATA
+	FILE *u_out, *v_out, *p_out;
+
+    std::string cur_dir;
+    std::string u_path, v_path, p_path;
+    cur_dir = std::filesystem::current_path();
+    cur_dir = cur_dir + "/../ns_res";
+
+    u_path = cur_dir + "/u_out.txt";
+    v_path = cur_dir + "/v_out.txt";
+    p_path = cur_dir + "/p_out.txt";
+
+    Plotting check;
+    check.check_folder(cur_dir);
+
+	u_out = std::fopen(u_path.c_str(), "w+t");
+    v_out = std::fopen(v_path.c_str(), "w+t");
+    p_out = std::fopen(p_path.c_str(), "w+t");
+
+	if (u_out == nullptr || v_out == nullptr || p_out == nullptr) {
+        std::cout << "One of the output file has failed to be opened!\n";
+        std::fclose(u_out);
+        std::fclose(v_out);
+        std::fclose(p_out);
+	} else {
+        for (int i=0 ; i<nx; i++) {
+            for (int j=0; j<ny; j++) {
+                fprintf(u_out, "%5.8lf\t", u(i, j));
+                fprintf(v_out, "%5.8lf\t", v(i, j));
+                fprintf(p_out, "%5.8lf\t", p(i, j));
+            }
+            fprintf(u_out, "\n");
+            fprintf(v_out, "\n");
+            fprintf(p_out, "\n");
+        }
+	}
+}
+
 void NS::solve_ns(std::string system, int nx, int ny, double re, double rho, 
                   double nu) {
     
@@ -258,6 +298,5 @@ void NS::solve_ns(std::string system, int nx, int ny, double re, double rho,
         }
     }
 
-    Plotting plot;
-    plot.plot_ns(nx, ny, p_final);
+    NS::save_res(u, v, p, nx, ny);
 }

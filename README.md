@@ -5,7 +5,7 @@ In this personal project I implement in C++ the numerical solution of some famou
 The models implemented are:
 
 - The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model
-- The [Navier-Stokes]([Navier–Stokes equations - Wikipedia](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations)) equations solved with the [Finite Difference  Method]([Finite difference method - Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_method))
+- The [Navier-Stokes]([Navier–Stokes equations - Wikipedia](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations)) equations solved with the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the lid driven cavity problem.
 
 ## Compilation
 
@@ -59,6 +59,8 @@ classical Runge-Kutta method (RK4).
 
 Example: `./scicomp lv n=10000 dt=0.01 x_0=2 y_0=1 a=0.7 b=0.5 c=0.3 d=0.2`.
 
+The results are saved one level up with respect the executable file in a folder named `plots`.
+
 ### 2D Navier-Stokes Equation
 
 The [Navier-Stokes](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) equations are partial
@@ -88,4 +90,6 @@ The required parameters are:
 - rho: density
 - nu: kinematic viscosity
 
-Example: `./scicomp ns cavity2d nx=12 ny=12 re=100 rho=1 nu=0.1`.
+Example: `./scicomp ns cavity2d nx=41 ny=41 re=100 rho=1 nu=0.1`.
+
+The results of the calculations are saved one level up with respect the executable file in a folder named `ns_res`. The components of the velocity and the pressure are saved in three different files named: `u_out.txt`, `v_out.txt`, and `p_out.txt` respectively. These files can be later plotted, for example, with [Matplotlib](https://matplotlib.org/).
