@@ -4,19 +4,16 @@
 #include <string>
 #include <vector>
 
-double LV::prey(double x, double y, double a, double b)
-{
+double LV::prey(double x, double y, double a, double b) {
     return a*x - b*x*y;
 }
 
-double LV::predator(double x, double y, double c, double d)
-{
+double LV::predator(double x, double y, double c, double d) {
     return d*x*y - c*y;
 }
 
 void LV::solve_lv(int n, double dt, double x_0, double y_0, double a, double b, 
-                  double c, double d, std::string path /* The default is "" */)
-{
+                  double c, double d, std::string path /* The default is "" */) {
 
     std::vector<double> t (n, 0);
     std::vector<double> x (n, 0);

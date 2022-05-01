@@ -28,8 +28,9 @@ class Cli
         void call_lv(int n, double dt, double x_0, double y_0, double a, 
                      double b, double c, double d);
 
-        /** Call of the finite element method model */
-        void call_nv();
+        /** Call of the Navier-Stokes solver */
+        void call_ns(std::string system, int nx, int ny, double re, double rho, 
+                     double nu);
 };
 
 #endif

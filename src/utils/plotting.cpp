@@ -1,4 +1,5 @@
 #include "plotting.h"
+#include "matrix.h"
 #include <matplot/matplot.h>
 #include <vector>
 #include <string>
@@ -8,8 +9,7 @@
 
 using namespace matplot;
 
-void Plotting::check_folder(std::string& path)
-{
+void Plotting::check_folder(std::string& path) {
     if (std::filesystem::exists(path) == 0) {
         std::cout << "Creating the path." << "\n";
         std::filesystem::create_directory(path);
@@ -20,8 +20,7 @@ void Plotting::check_folder(std::string& path)
 void Plotting::plot_lv(std::vector<double>& t, std::vector<double>& x, 
                        std::vector<double>& y, std::string x_leg, 
                        std::string y_leg, std::string tlt, 
-                       std::string fn, std::string path /* The default is "" */)
-{   
+                       std::string fn, std::string path /* The default is "" */) {   
     std::string cur_dir;
     if (!path.empty()) {
         cur_dir = path;
@@ -51,6 +50,16 @@ void Plotting::plot_lv(std::vector<double>& t, std::vector<double>& x,
 
     std::string file_name = cur_dir + "/" + fn + ".pdf";
     save(file_name, "pdf");
+
+    show();
+}
+
+void Plotting::plot_ns(int nx, int ny, Matrix<double>& p) {
+    auto [x, y] = meshgrid(iota(0, 0.2, 2), iota(0, 0.2, 2));
+    vector_2d u = transform(x, y, [](double x, double y) { return cos(x) * y; });
+    vector_2d v = transform(x, y, [](double x, double y) { return sin(x) * y; });
+
+    quiver(x, y, u, v);
 
     show();
 }

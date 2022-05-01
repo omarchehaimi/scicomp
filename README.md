@@ -78,6 +78,14 @@ Where:
 
 The first equation is the conservation of the momentum and the second one about the continuity equation.
 
-These equations are solved numerically for the cavity flow problem by following the guide: [CFD Python: 12 steps to Navier-Stokes](https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/).
+These equations are solved numerically by using the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the cavity flow problem by following the lecture series of [Lid Driven Cavity Flow using SIMPLE Algorithm in MATLAB](https://www.youtube.com/watch?v=iyqAib3QXY8).
 
-Example: `./scicomp ns cavity2d`.
+The required parameters are:
+- nx: size along the x direction
+- ny: size along the y direction
+- nt: number of time steps
+- re: Reynolds number
+- rho: density
+- nu: kinematic viscosity
+
+Example: `./scicomp ns cavity2d nx=12 ny=12 re=100 rho=1 nu=0.1`.

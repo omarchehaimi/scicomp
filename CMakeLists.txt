@@ -16,6 +16,10 @@ if(NOT matplotplusplus_POPULATED)
 endif()
 
 # Add the executable
-add_executable(${PROJECT_NAME} src/main.cpp src/utils/cli.cpp 
-                               src/utils/plotting.cpp src/lv/lv.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp 
+                               src/utils/cli.cpp 
+                               src/utils/plotting.cpp 
+                               src/utils/matrix.cpp
+                               src/lv/lv.cpp
+                               src/ns/ns.cpp)
 target_link_libraries(${PROJECT_NAME} PUBLIC matplot)
