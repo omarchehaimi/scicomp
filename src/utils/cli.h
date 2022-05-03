@@ -29,8 +29,8 @@ class Cli
                      double b, double c, double d);
 
         /** Call of the Navier-Stokes solver */
-        void call_ns(std::string system, int nx, int ny, double re, double rho, 
-                     double nu);
+        void call_ns(std::string system, int nx, int ny, double dt, double re, 
+                     double rho, double nu);
 };
 
 #endif

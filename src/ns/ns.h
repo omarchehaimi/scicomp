@@ -12,7 +12,7 @@ class NS
         void check_size(int nx, int ny);
 
     public: 
-        void solve_ns(std::string system, int nx, int ny, double re, 
+        void solve_ns(std::string system, int nx, int ny, double dt, double re, 
                       double rho, double nu);
         void save_res(Matrix<double>& u, Matrix<double>& v, Matrix<double>& p,
                       int nx, int ny);

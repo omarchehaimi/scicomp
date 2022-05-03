@@ -4,8 +4,8 @@ In this personal project I implement in C++ the numerical solution of some famou
 
 The models implemented are:
 
-- The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model
-- The [Navier-Stokes]([Navier–Stokes equations - Wikipedia](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations)) equations solved with the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the lid driven cavity problem.
+- The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model solved by using the Runge-Kutta method [RK4](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods).
+- The [Navier-Stokes](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) equations solved with the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the lid driven cavity flow problem.
 
 ## Compilation
 
@@ -80,16 +80,16 @@ Where:
 
 The first equation is the conservation of the momentum and the second one about the continuity equation.
 
-These equations are solved numerically by using the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the cavity flow problem by following the lecture series of [Lid Driven Cavity Flow using SIMPLE Algorithm in MATLAB](https://www.youtube.com/watch?v=iyqAib3QXY8).
+These equations are solved numerically by using the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the lid driven cavity flow problem by following the lecture series of [Coding for Lid Driven Cavity Flow Simulation in C](https://www.youtube.com/watch?v=_yL5zd_-rBI).
 
 The required parameters are:
 - nx: size along the x direction
 - ny: size along the y direction
-- nt: number of time steps
+- dt: time step
 - re: Reynolds number
 - rho: density
 - nu: kinematic viscosity
 
-Example: `./scicomp ns cavity2d nx=41 ny=41 re=100 rho=1 nu=0.1`.
+Example: `./scicomp ns cavity2d nx=41 ny=41 dt=0.001 re=100 rho=1 nu=0.1`.
 
-The results of the calculations are saved one level up with respect the executable file in a folder named `ns_res`. The components of the velocity and the pressure are saved in three different files named: `u_out.txt`, `v_out.txt`, and `p_out.txt` respectively. These files can be later plotted, for example, with [Matplotlib](https://matplotlib.org/).
+The results of the calculations are saved one level up with respect the executable file in a folder named `ns_res`. The components of the velocity and the pressure are saved in three different files named: `u_out.txt`, `v_out.txt`, and `p_out.txt` respectively. These files can be later plotted, for example, by using [Matplotlib](https://matplotlib.org/).
