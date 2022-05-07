@@ -10,7 +10,9 @@ The models implemented are:
 ## Compilation
 
 To compile `scicomp` the C++ version must be greater than 17.
-CMake is used to create the makefile. The only dependency is the [Matplot++](https://alandefreitas.github.io/matplotplusplus/) library downloaded automatically while generating the makefile.
+CMake is used to create the makefile. 
+
+The only dependency is the [Matplot++](https://alandefreitas.github.io/matplotplusplus/) library downloaded automatically while generating the makefile.
 
 Create a folder named `build`, and then generate the makefile with CMake:
 
