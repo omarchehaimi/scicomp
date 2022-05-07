@@ -25,7 +25,7 @@ Compile hence inside the `build` folder with:
 ## Usage
 ### Lotka-Volterra Model
 
-The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model describes how the population of two species change when they interact. This model is also known as predator-prey model. 
+The [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equations) model describes how the population of two species changes when they interact. This model is also known as predator-prey model. 
 
 The required parameters to solve these equations are:
 
