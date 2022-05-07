@@ -47,7 +47,7 @@ Example: `./scicomp lv n=10000 dt=0.01 x_0=2 y_0=1 a=0.7 b=0.5 c=0.3 d=0.2`.
 
 The results are saved one level up with respect the location of the executable file in a folder named `plots`.
 
-### 2D Navier-Stokes Equation
+### 2D Navier-Stokes Equations
 
 The [Navier-Stokes](https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations) equations are partial
 differential equations that describe the motion of viscous fluids. In this case we will focus on incompressible fluids and for the  two dimensional case. These equations are solved numerically by using the [finite volume method](https://en.wikipedia.org/wiki/Finite_volume_method) for the lid driven cavity flow problem by following the lecture series of [Coding for Lid Driven Cavity Flow Simulation in C](https://www.youtube.com/watch?v=_yL5zd_-rBI).
