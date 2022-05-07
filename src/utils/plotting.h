@@ -25,7 +25,6 @@ class Plotting
                      std::vector<double>& y, std::string x_leg, 
                      std::string y_leg, std::string title, 
                      std::string fn, std::string path="");
-        void plot_ns(int nx, int ny, Matrix<double>& p);
 
 };
 

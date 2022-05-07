@@ -211,4 +211,5 @@ void NS::solve_ns(std::string system, int nx, int ny, double dt, double re,
 
     std::cout << "Calculation completed\nSaving the results \n";
     NS::save_res(uc, vc, pc, nx, ny);
+
 }
